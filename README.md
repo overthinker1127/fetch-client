@@ -1,11 +1,11 @@
-# @overthinker/fetch
+# @overthinker1127/fetch-client
 
 Type-safe fetch client with explicit request options, response parsing, logging hooks, HTTP errors, and auth refresh presets.
 
 ## Basic Usage
 
 ```ts
-import http from '@overthinker/fetch'
+import http from '@overthinker1127/fetch-client'
 
 type User = {
   id: number
@@ -153,7 +153,7 @@ Concurrent 401 responses share one in-flight refresh. Refresh requests and retri
 `withThrowOnError<TError>()` only wraps failed HTTP responses in `HttpError<TError>`. User-thrown errors from fetch implementations or interceptors pass through unchanged.
 
 ```ts
-import { isHttpError } from '@overthinker/fetch'
+import { isHttpError } from '@overthinker1127/fetch-client'
 
 try {
   await api.get('/users')
