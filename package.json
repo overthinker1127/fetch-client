@@ -1,23 +1,36 @@
 {
   "name": "@overthinker/fetch",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "!dist/*.test.d.ts",
+    "!dist/*.test.d.ts.map",
+    "!dist/*.test.js",
+    "README.md"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && tsup --entry.index src/index.ts --format cjs --platform node --target es2022 --out-dir dist",
+    "prepack": "npm run build",
     "typecheck": "tsc --noEmit",
     "test": "node --test dist/**/*.test.js"
   },
   "devDependencies": {
     "@types/node": "^24.10.2",
+    "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   }
 }
